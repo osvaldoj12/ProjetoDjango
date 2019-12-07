@@ -1,0 +1,106 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/ProjetoCss.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap' %}">
+  </head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+  <!-- Conteúdo do navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Navbar</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(Página atual)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/accounts/login">Login</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="/Home">Tela inicial do Login</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/accounts/logout">Sair</a>
+            </li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+  </nav>
+  <center>
+          <nav class="navbar navbar-dark bg-dark m-1 ml-5 px-md-5 text-white container" style="border-radius: 20px 0px;" id="navbar">
+              <h6>Atenção {{ user }}.<br>Logo após de você cadastrar um funcionário, você vai ser redirecionado para a Ouvidoria.</h6>
+          </nav>
+          
+  <form class="needs-validation m-5" novalidate method="POST">
+      {% csrf_token %}  
+      <input type="hidden" name="next" value="{{ next }}"></input>
+    
+
+<div id="div_id_username" class="form-group"> 
+<label for="id_username" class=" requiredField">
+  Username
+    <span class="asteriskField">*</span> 
+</label> 
+<div class=""> 
+  <input type="text" name="username" maxlength="150" autofocus="" class="textinput textInput form-control" required="" id="id_username"> 
+    <small id="hint_id_username" class="form-text text-muted">Requeridos. 150 caracteres ou menos. Letras, dígitos e @ /. / + / - / _ apenas.</small> 
+</div> 
+</div>
+<div id="div_id_email" class="form-group">
+  <label for="id_email" class=" requiredField">
+    Email
+    <span class="asteriskField">*</span>
+  </label> 
+  <div class="">
+    <input type="email" name="email" autofocus="" class="textinput textinput form-control" required="" id="id_email">
+  </div>
+</div>
+  <div id="div_id_password1" class="form-group"> 
+<label for="id_password1" class=" requiredField">
+  Password
+  <span class="asteriskField">*</span> 
+</label> 
+
+
+<div class=""> 
+<input type="password" name="password1" class="textinput textInput form-control" required="" id="id_password1"> 
+  <small id="hint_id_password1" class="form-text text-muted">
+    <ul>
+      <li>Sua senha não pode ser muito semelhante às suas outras informações pessoais.</li>
+      <li>Sua senha deve conter pelo menos 8 caracteres.</li>
+      <li>Sua senha não pode ser uma senha comumente usada.</li>
+      <li>Sua senha não pode ser totalmente numérica.</li>
+    </ul>
+  </small> 
+</div> 
+</div> 
+<div id="div_id_password2" class="form-group"> 
+<label for="id_password2" class=" requiredField">
+Password confirmation
+<span class="asteriskField">*</span> 
+</label> 
+<div class=""> 
+<input type="password" name="password2" class="textinput textInput form-control" required="" id="id_password2"> <small id="hint_id_password2" class="form-text text-muted">Digite a mesma senha de antes, para verificação.</small> 
+</div> 
+</div>
+
+  <div class="col-auto my-1">
+  <button type="submit" class="btn btn-primary" id="btnLogin">Registrar</button>
+    </div>
+</form>
+</center>
+</body>
+</html>

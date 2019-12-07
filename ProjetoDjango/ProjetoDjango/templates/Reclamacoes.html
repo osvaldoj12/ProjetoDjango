@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Reclamações{% endblock %}
+
+{% block content %}
+<center>
+        <nav class="navbar navbar-dark bg-dark m-1 ml-5 px-md-4 text-white container mb-5" id="navbar" style="border-radius: 20px 0px;">
+                <h6>Seja Bem Vindo/a</h6>
+        </nav>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-secondary" id="btnLogin" value="Enviar">
+        </form>
+{% endblock %}
